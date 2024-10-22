@@ -7,6 +7,8 @@ const cors = require("cors");
 const port = process.env.PORT || 5000;
 
 // Middleware
+// Middleware
+// Middleware
 app.use(
   cors({
     origin: ["https://docshouse-8de58.web.app"],
@@ -17,9 +19,13 @@ app.use(express.json());
 app.use(coockieParser());
 
 // MongoDB connection URI
+// MongoDB connection URI
+// MongoDB connection URI
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DOCS_USER}:${process.env.DOCS_PASS}@docscluster.i1xxh.mongodb.net/?retryWrites=true&w=majority&appName=docsCluster`;
 
+// Create a new MongoClient
+// Create a new MongoClient
 // Create a new MongoClient
 const client = new MongoClient(uri, {
   serverApi: {
