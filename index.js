@@ -11,7 +11,7 @@ const port = process.env.PORT || 5000;
 // Middleware
 app.use(
   cors({
-    origin: ["https://docshouse-8de58.web.app"],
+    origin: ["https://docshouse-8de58.web.app","https://docshouse-8de58.firebaseapp.com"],
     credentials: true,
   })
 );
@@ -19,14 +19,12 @@ app.use(express.json());
 app.use(coockieParser());
 
 // MongoDB connection URI
-// MongoDB connection URI
-// MongoDB connection URI
+
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DOCS_USER}:${process.env.DOCS_PASS}@docscluster.i1xxh.mongodb.net/?retryWrites=true&w=majority&appName=docsCluster`;
 
 // Create a new MongoClient
-// Create a new MongoClient
-// Create a new MongoClient
+
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -35,25 +33,25 @@ const client = new MongoClient(uri, {
   },
 });
 
-const verifyToken = (req, res, next) => {
-  try {
-    const token = req.cookies.token;
-    if (!token) {
-      return res.status(401).send({ message: "No token provided" });
-    }
+// const verifyToken = (req, res, next) => {
+//   try {
+//     const token = req.cookies.token;
+//     if (!token) {
+//       return res.status(401).send({ message: "No token provided" });
+//     }
 
-    jwt.verify(token, process.env.ACCESS_SECRET_TOKEN, (err, decoded) => {
-      if (err) {
-        return res.status(403).send({ message: "Invalid token" });
-      }
+//     jwt.verify(token, process.env.ACCESS_SECRET_TOKEN, (err, decoded) => {
+//       if (err) {
+//         return res.status(403).send({ message: "Invalid token" });
+//       }
 
-      req.user = decoded;
-      next();
-    });
-  } catch (error) {
-    res.status(500).send({ message: "Token verification failed", error });
-  }
-};
+//       req.user = decoded;
+//       next();
+//     });
+//   } catch (error) {
+//     res.status(500).send({ message: "Token verification failed", error });
+//   }
+// };
 // Function to run the server and connect to MongoDB
 async function run() {
   try {
